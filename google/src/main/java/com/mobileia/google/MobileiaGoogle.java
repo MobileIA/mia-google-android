@@ -122,6 +122,8 @@ public class MobileiaGoogle implements GoogleApiClient.OnConnectionFailedListene
      * @param result
      */
     protected void handleSignInResult(GoogleSignInResult result) {
+        // Desconectamos GoogleApi
+        mGoogleApiClient.disconnect();
         // Verificamos si la respuesta es correcta
         if(!result.isSuccess()){
             Log.d("MobileiaGoogle", "handleSignInResult: data: " + result.getStatus().toString());
