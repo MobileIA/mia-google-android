@@ -20,6 +20,8 @@ import com.mobileia.google.listener.OnSuccessGoogleLogin;
 
 public class MainActivity extends AppCompatActivity  {
 
+    public static final String GOOGLE_ID = "484646117709-endoqs731lb285b4gvut7pdkqr28jvqs.apps.googleusercontent.com";
+
     protected MobileiaGoogle mMobileiaGoogle;
 
     @Override
@@ -29,14 +31,15 @@ public class MainActivity extends AppCompatActivity  {
 
         mMobileiaGoogle = new GoogleLoginBuilder()
                 .withActivity(this)
+                .withGoogleId(GOOGLE_ID)
                 .withSuccessResult(new OnSuccessGoogleLogin() {
                     @Override
                     public void onSuccess(GoogleSignInAccount acct) {
+                        Log.d("MobileiaGoogle", "handleSignInResult: data: " + acct.getIdToken());
                         Log.d("MobileiaGoogle", "handleSignInResult: data: " + acct.getDisplayName());
                         Log.d("MobileiaGoogle", "handleSignInResult: data: " + acct.getFamilyName());
                         Log.d("MobileiaGoogle", "handleSignInResult: data: " + acct.getGivenName());
                         Log.d("MobileiaGoogle", "handleSignInResult: data: " + acct.getEmail());
-                        Log.d("MobileiaGoogle", "handleSignInResult: data: " + acct.getIdToken());
                         Log.d("MobileiaGoogle", "handleSignInResult: data: " + acct.getId());
                         Log.d("MobileiaGoogle", "handleSignInResult: data: " + acct.getPhotoUrl());
                         Log.d("MobileiaGoogle", "handleSignInResult: data: " + acct.getServerAuthCode());

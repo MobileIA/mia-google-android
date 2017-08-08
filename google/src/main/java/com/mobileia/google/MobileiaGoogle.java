@@ -40,6 +40,10 @@ public class MobileiaGoogle implements GoogleApiClient.OnConnectionFailedListene
      * Objeto para el servicio de google
      */
     protected GoogleApiClient mGoogleApiClient;
+    /**
+     * Almacena el ID de google
+     */
+    protected String mGoogleId;
 
     /**
      * Manejador si no se pudo conectar a Google Play Services
@@ -103,6 +107,12 @@ public class MobileiaGoogle implements GoogleApiClient.OnConnectionFailedListene
     }
 
     /**
+     * Setea el ID de google
+     * @param googleId
+     */
+    public void setGoogleId(String googleId){ mGoogleId = googleId; }
+
+    /**
      * Constructor
      */
     public MobileiaGoogle(){}
@@ -114,9 +124,11 @@ public class MobileiaGoogle implements GoogleApiClient.OnConnectionFailedListene
     protected void handleSignInResult(GoogleSignInResult result) {
         // Verificamos si la respuesta es correcta
         if(!result.isSuccess()){
+            Log.d("MobileiaGoogle", "handleSignInResult: data: " + result.getStatus().toString());
             // Llamamos al callback para informar error
             if(mErrorListener != null){
                 mErrorListener.onError();
+                return;
             }
         }
         // Llamar al callback con la cuenta
@@ -129,10 +141,12 @@ public class MobileiaGoogle implements GoogleApiClient.OnConnectionFailedListene
      * Funcion que se encarga de crear el servicio de google
      */
     protected void createGoogleService(){
+        Log.d("MobileiaGoogle", "handleSignInResult: data: " + mGoogleId);
         // Configure sign-in to request the user's ID, email address, and basic
         // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
+                .requestIdToken(mGoogleId)
                 .build();
         // Build a GoogleApiClient with access to the Google Sign-In API and the
         // options specified by gso.

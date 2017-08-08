@@ -25,6 +25,10 @@ public class GoogleLoginBuilder {
      * Almacena listener para las respuestas erroneas
      */
     protected OnErrorGoogleLogin mErrorListener;
+    /**
+     * Almacena el ID de google
+     */
+    protected String mGoogleId;
 
     /**
      * Configura el activity
@@ -56,10 +60,21 @@ public class GoogleLoginBuilder {
     }
 
     /**
+     * Setea el ID de google
+     * @param googleId
+     * @return
+     */
+    public GoogleLoginBuilder withGoogleId(String googleId){
+        mGoogleId = googleId;
+        return this;
+    }
+
+    /**
      * Crea el servicio para el login con Google
      */
     public MobileiaGoogle build(){
         MobileiaGoogle service = new MobileiaGoogle();
+        service.setGoogleId(mGoogleId);
         service.setActivity(mActivity);
         service.setSuccessListener(mSuccessListener);
         service.setErrorListener(mErrorListener);
