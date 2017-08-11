@@ -5,5 +5,5 @@ package com.mobileia.google.listener;
  */
 
 public interface OnErrorGoogleLogin {
-    void onError();
+    void onError(int code, String message);
 }

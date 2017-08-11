@@ -53,7 +53,7 @@ public class MobileiaGoogle implements GoogleApiClient.OnConnectionFailedListene
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
         // Llamamos al callback para informar error
         if(mErrorListener != null){
-            mErrorListener.onError();
+            mErrorListener.onError(-1, "No se pudo iniciar los Google Play Services");
         }
     }
 
@@ -129,7 +129,7 @@ public class MobileiaGoogle implements GoogleApiClient.OnConnectionFailedListene
             Log.d("MobileiaGoogle", "handleSignInResult: data: " + result.getStatus().toString());
             // Llamamos al callback para informar error
             if(mErrorListener != null){
-                mErrorListener.onError();
+                mErrorListener.onError(-1, "No se pudo loguear con la cuenta de Google");
                 return;
             }
         }
