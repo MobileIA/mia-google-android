@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity  {
                 })
                 .withErrorResult(new OnErrorGoogleLogin() {
                     @Override
-                    public void onError() {
+                    public void onError(int code, String message) {
                         Log.d("MobileiaGoogle", "handleSignInResult: Error");
                     }
                 })
