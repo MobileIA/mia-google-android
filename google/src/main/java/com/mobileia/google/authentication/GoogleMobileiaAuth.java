@@ -21,10 +21,6 @@ import com.mobileia.google.listener.OnSuccessGoogleLogin;
 
 public class GoogleMobileiaAuth extends MobileiaAuthBase {
     /**
-     * Almacena la actividad
-     */
-    protected FragmentActivity mActivity;
-    /**
      * Almacenamos el callback
      */
     protected LoginResult mCallback;
@@ -36,6 +32,10 @@ public class GoogleMobileiaAuth extends MobileiaAuthBase {
      * Almacena el Token de google
      */
     protected String mGoogleToken;
+    /**
+     * Almacena el ID del usuario de google
+     */
+    protected String mGoogleUserId;
     /**
      * Almacena instancia de MobileiaGoogle
      */
@@ -73,13 +73,12 @@ public class GoogleMobileiaAuth extends MobileiaAuthBase {
     @Override
     public void openSocial() {
         mMobileiaGoogle = new GoogleLoginBuilder()
-                .withActivity(mActivity)
-                .withGoogleId(mGoogleId)
                 .withSuccessResult(new OnSuccessGoogleLogin() {
                     @Override
                     public void onSuccess(GoogleSignInAccount account) {
                         // Almacenamos el token de google
                         mGoogleToken = account.getIdToken();
+                        mGoogleUserId = account.getId();
                         // Ya se logueo, realizamos peticion para generar AccessToken
                         requestAccessToken();
                     }
@@ -87,13 +86,29 @@ public class GoogleMobileiaAuth extends MobileiaAuthBase {
                 .withErrorResult(new OnErrorGoogleLogin() {
                     @Override
                     public void onError(int code, String message) {
-                        // Llamamos al callback con error
-                        mCallback.onError(new Error(code, message));
+                        if(mCallback != null){
+                            // Llamamos al callback con error
+                            mCallback.onError(new Error(code, message));
+                        }
                     }
                 })
+                .withGoogleId(mGoogleId)
+                .withActivity((FragmentActivity) mActivity)
                 .build();
         mMobileiaGoogle.login();
     }
+
+    /**
+     * Devuelve el ID del usuario logueado
+     * @return
+     */
+    public String getGoogleUserId(){ return mGoogleUserId; }
+
+    /**
+     * Devuelve el Token del usuario logueado
+     * @return
+     */
+    public String getGoogleUserToken(){ return mGoogleToken; }
 
     /**
      *

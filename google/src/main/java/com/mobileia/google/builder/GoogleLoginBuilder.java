@@ -75,9 +75,9 @@ public class GoogleLoginBuilder {
     public MobileiaGoogle build(){
         MobileiaGoogle service = new MobileiaGoogle();
         service.setGoogleId(mGoogleId);
-        service.setActivity(mActivity);
         service.setSuccessListener(mSuccessListener);
         service.setErrorListener(mErrorListener);
+        service.setActivity(mActivity);
 
         return service;
     }

@@ -13,7 +13,7 @@ ext {
     siteUrl = 'https://github.com/MobileIA/mia-google-android'
     gitUrl = 'https://github.com/MobileIA/mia-google-android.git'
 
-    libraryVersion = '0.0.6'
+    libraryVersion = '0.0.10'
 
     developerId = 'mobileia'
     developerName = 'MobileIA'
@@ -32,8 +32,8 @@ android {
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion 27
-        versionCode 6
-        versionName "0.0.6"
+        versionCode 10
+        versionName "0.0.10"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -56,7 +56,7 @@ dependencies {
     compile 'com.google.android.gms:play-services-auth:11.8.0'
     compile 'com.google.firebase:firebase-auth:11.8.0'
     //compile 'com.firebaseui:firebase-ui-auth:2.2.0'
-    compile 'com.mobileia:authentication-core:0.0.4'
+    compile 'com.mobileia:authentication-core:0.0.11'
 }
 
 apply from: '../installv1.gradle'
