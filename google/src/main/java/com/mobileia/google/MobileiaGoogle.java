@@ -123,6 +123,7 @@ public class MobileiaGoogle implements GoogleApiClient.OnConnectionFailedListene
      */
     protected void handleSignInResult(GoogleSignInResult result) {
         // Desconectamos GoogleApi
+        mGoogleApiClient.stopAutoManage(mActivity);
         mGoogleApiClient.disconnect();
         // Verificamos si la respuesta es correcta
         if(!result.isSuccess()){

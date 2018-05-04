@@ -21,10 +21,6 @@ import com.mobileia.google.listener.OnSuccessGoogleLogin;
 
 public class GoogleMobileiaAuth extends MobileiaAuthBase {
     /**
-     * Almacenamos el callback
-     */
-    protected LoginResult mCallback;
-    /**
      * Almacena el ID de google
      */
     protected String mGoogleId;
